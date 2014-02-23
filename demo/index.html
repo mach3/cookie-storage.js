@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+    <style>
+
+    body {
+        font-size: 0.8em;
+    }
+
+    #form-demo ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    #form-demo li {
+        padding: .5em;
+        overflow: hidden;
+    }
+    #form-demo label {
+        float: left;
+        width: 4em;
+        padding: .5em 0;
+    }
+    #form-demo input[type=text], #form-demo textarea {
+        width: 30em;
+        margin-left: 1em;
+        padding: .5em;
+    }
+    #form-demo textarea {
+        height: 10em;
+    }
+    #form-demo .foot {
+        margin-left: 5em;
+    }
+    #form-demo button {
+        font-size: inherit;
+        padding: 1em 5em;
+    }
+
+    </style>
+</head>
+<body>
+
+    <h1>CookieStorage Demo</h1>
+
+    <form action="" id="form-demo">
+        <ul>
+            <li>
+                <label for="name">Name</label>
+                <input type="text" name="name">
+            </li>
+            <li>
+                <label for="name">Age</label>
+                <input type="text" name="age">
+            </li>
+            <li>
+                <label for="email">Email</label>
+                <input type="text" name="email">
+            </li>
+            <li>
+                <label for="profile">Profile</label>
+                <textarea name="profile"></textarea>
+            </li>
+        </ul>
+        <div class="foot">
+            <button id="button-save">Save</button>
+        </div>
+    </form>
+
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="../src/cookie-storage.js"></script>
+	<script>
+
+    (function(){
+        var app = {};
+
+        app.storage = null;
+        app.form = null;
+
+        app.init = function(){
+            this.storage = new CookieStorage("my-storage", {
+                path: "/",
+                lifetime: 60*60*24
+            });
+            this.form = $("#form-demo");
+            this.form.on("submit", $.proxy(this.on.submit, this));
+            this.fetch();
+        };
+
+        app.fetch = function(){
+            var my = this;
+            $.each(["name", "age", "email", "profile"], function(i, name){
+                my.form.find("[name=" + name + "]").val(my.storage.get(name));
+            });
+        };
+
+        app.save = function(){
+            var vars = {};
+            $.each(this.form.serializeArray(), function(i, item){
+                vars[item.name] = item.value;
+            });
+            this.storage.set(vars);
+            this.storage.save();
+        };
+
+        app.on = {
+            submit: function(e){
+                e.preventDefault();
+                console.log("submit");
+                this.save();
+            }
+        };
+
+        app.init();
+    }());
+
+	</script>
+	
+</body>
+</html>
