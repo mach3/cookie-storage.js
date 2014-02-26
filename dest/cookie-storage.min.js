@@ -3,7 +3,7 @@
  * -------------
  * Use cookie as object storage
  *
- * @version 0.0.0
+ * @version 0.1.0
  * @author mach3 <http://github.com/mach3>
  * @license MIT License
  * @url http://github.com/mach3/cookie-storage.js

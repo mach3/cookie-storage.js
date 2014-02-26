@@ -14,5 +14,8 @@
   ],
   "devDependencies": {
     "jquery": "1"
+  },
+  "dependencies": {
+    "json2": "*"
   }
 }
