@@ -14,7 +14,7 @@ module.exports = function(grunt){
 					banner: banner
 				},
 				files: {
-					"dest/cookie-storage.js": "src/cookie-storage.js"
+					"dist/cookie-storage.js": "src/cookie-storage.js"
 				}
 			}
 		},
@@ -25,7 +25,7 @@ module.exports = function(grunt){
 					banner: banner
 				},
 				files: {
-					"dest/cookie-storage.min.js": "src/cookie-storage.js"
+					"dist/cookie-storage.min.js": "src/cookie-storage.js"
 				}
 			}
 		},
