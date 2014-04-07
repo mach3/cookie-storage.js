@@ -3,7 +3,7 @@
  * -------------
  * Use cookie as object storage
  *
- * @version 0.1.0
+ * @version 0.1.1
  * @author mach3 <http://github.com/mach3>
  * @license MIT License
  * @url http://github.com/mach3/cookie-storage.js
@@ -70,7 +70,7 @@
 		 */
 		parseCookie: function(str){
 			var vars = {};
-			this.each(str.split(";"), function(item){
+			this.each(str.split(/\s*;\s*/), function(item){
 				var m = item.match(/^(.+?)=(.+)$/);
 				if(!! m){ vars[m[1]] = m[2]; }
 			});

@@ -60,7 +60,7 @@
 		 */
 		parseCookie: function(str){
 			var vars = {};
-			this.each(str.split(";"), function(item){
+			this.each(str.split(/\s*;\s*/), function(item){
 				var m = item.match(/^(.+?)=(.+)$/);
 				if(!! m){ vars[m[1]] = m[2]; }
 			});
